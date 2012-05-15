@@ -1,5 +1,5 @@
 function l (msg) {
-	console.log(msg);
+	// console.log(msg);
 }
 
 function Dict() {

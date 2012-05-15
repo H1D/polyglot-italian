@@ -153,7 +153,7 @@ function get_val(arr,token,vars) {
 function get_strings(dict) {
 	var templates = [
 		'<pronoun[x]> <not> <verb[?][x]>',
-		// '<pronoun[x]> <verb[?][x]>'
+		'<pronoun[x]> <verb[?][x]>'
 	];
 
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	
@@ -169,6 +169,7 @@ function get_strings(dict) {
 	var rnd = 0;//Math.round(Math.random())
 
 	for (var i=0;i<words.length;i++) {
+		var word_token_orig = words[i];
 		var word_token = words[i];
 		// handle tokens without brackets
 		word_token = word_token.replace(/(\w)>/,'$1[?]>');
@@ -178,8 +179,8 @@ function get_strings(dict) {
 		var word = get_val(dict[type],index_token,vars);
 		vars = word[2];
 
-		result[0] = result[0].replace(word_token,word[1-rnd]);
-		result[1] = result[1].replace(word_token,word[rnd]);
+		result[0] = result[0].replace(word_token_orig,word[1-rnd]);
+		result[1] = result[1].replace(word_token_orig,word[rnd]);
 	}
 	return result;
 }

@@ -17,6 +17,10 @@
     		text-align:center;
     	}   
 
+		#process {
+			margin-left:230px;
+		}
+
     	#orig,
     	#trans {
     		height:2em;
@@ -28,15 +32,63 @@
     		width:4em;
     	}
 
+		#help {
+			float:left;
+			width:220px;
+		}
+			#help table {
+				margin:1em;
+				display:none;
+			}
+			#help table .gray{
+				color:gray;
+			}
+			#help .click {
+				color:gray;
+				border-bottom:dotted gray 1px;
+				cursor:pointer;
+			}
+
     </style>
 </head>
 <body>
+	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 	<div id="page">
+		<div id="help">
+			<div class="click">подсказка</div>
 
-		<div id="orig"></div>
-		<div id="trans"></div>
-		<br>
-		<button>Еще</button>
+			<table>
+				<tr><td>mangiare</td><td class="gray">есть</td></tr>
+				<tr><td>guardare</td><td class="gray">смотреть</td></tr>
+				<tr><td>giocare</td><td class="gray">играть</td></tr>
+				<tr><td>lavorare</td><td class="gray">работать</td></tr>
+				<tr><td>amare</td><td class="gray">любить</td></tr>
+				<tr><td>ascoltare</td><td class="gray">смотреть</td></tr>
+				<tr><td>imparare</td><td class="gray">учить, узнавать</td></tr>
+				<tr><td>abitare</td><td class="gray">жить</td></tr>
+			</table>
+
+			<table>
+				<tr><td>io</td><td class="gray">я</td></tr>
+				<tr><td>tu</td><td class="gray">ты</td></tr>
+				<tr><td>lui</td><td class="gray">он</td></tr>
+				<tr><td>lei</td><td class="gray">она</td></tr>
+				<tr><td>lei</td><td class="gray">Вы</td></tr>
+				<tr><td>noi</td><td class="gray">мы</td></tr>
+				<tr><td>voi</td><td class="gray">вы (множ.)</td></tr>
+				<tr><td>loro</td><td class="gray">они</td></tr>
+			</table>
+
+		</div>
+
+
+		<div id="process">
+			<div id="orig"></div>
+			<hr>
+			<div id="trans"></div>
+			<br>
+			<button>Еще</button>
+		</div>
 	</div>
 	<script type="text/javascript">
 		var dict = new Dict();
@@ -54,10 +106,33 @@
 			}
 		});
 
+		$('#help .click').click(function () {
+			$('#help table').slideToggle(500);
+		});
+
 		$(function () {
 			
 			$('button').click();			
 		});
 	</script>
+	<script type="text/javascript">
+    var reformalOptions = {
+        project_id: 62321,
+        project_host: "polyglot-italian.reformal.ru",
+        tab_orientation: "left",
+        tab_indent: "50%",
+        tab_bg_color: "#cc0011",
+        tab_border_color: "#FFFFFF",
+        tab_image_url: "http://tab.reformal.ru/T9GC0LfRi9Cy0Ysg0Lgg0L%252FRgNC10LTQu9C%252B0LbQtdC90LjRjw==/FFFFFF/2a94cfe6511106e7a48d0af3904e3090/left/1/tab.png",
+        tab_border_width: 1
+    };
+    
+    (function() {
+        var script = document.createElement('script');
+        script.type = 'text/javascript'; script.async = true;
+        script.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'media.reformal.ru/widgets/v3/reformal.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+    })();
+</script>
 </body>
 </html>

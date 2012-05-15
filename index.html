@@ -1,0 +1,63 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript"
+             src="italian.js"></script>
+    <script type="text/javascript"
+             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <style type="text/css">
+    	body {	
+    		font:sans;    		
+    	}
+
+    	#page{
+    		width:600px;
+    		margin: 100px auto;
+    		text-align:center;
+    	}   
+
+    	#orig,
+    	#trans {
+    		height:2em;
+    		font-size: 1.8em;
+    	}
+
+    	button {    		
+    		font-size:2em;
+    		width:4em;
+    	}
+
+    </style>
+</head>
+<body>
+	<div id="page">
+
+		<div id="orig"></div>
+		<div id="trans"></div>
+		<br>
+		<button>Еще</button>
+	</div>
+	<script type="text/javascript">
+		var dict = new Dict();
+		var strings = get_strings(dict);
+
+		$('button').click(function () {
+			if ($(this).html() === 'Еще') {
+				$('#trans').html(' ');			
+				$('#orig').html(strings[0]);				
+				$(this).html('Ответ');
+			} else {
+				$('#trans').html(strings[1]);				
+				$(this).html('Еще')
+				strings = get_strings(dict);
+			}
+		});
+
+		$(function () {
+			
+			$('button').click();			
+		});
+	</script>
+</body>
+</html>

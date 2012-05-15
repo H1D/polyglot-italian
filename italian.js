@@ -166,7 +166,7 @@ function get_strings(dict) {
 		1:template,
 	}
 
-	var rnd = Math.round(Math.random())
+	var rnd = 0;//Math.round(Math.random())
 
 	for (var i=0;i<words.length;i++) {
 		var word_token = words[i];

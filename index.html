@@ -1,6 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<title>Тренет по телепрограмме Полиглот (итальянский)</title>
 	<script type="text/javascript"
              src="italian.js"></script>
     <script type="text/javascript"
@@ -9,16 +10,21 @@
     <style type="text/css">
     	body {	
     		font:sans;    		
+    		background:#EFEFEF;
+    		    		text-align:center;
     	}
 
     	#page{
     		width:600px;
+    		background: white;
     		margin: 100px auto;
-    		text-align:center;
+    		padding-top:.5em;
+
+    		height:100%;
     	}   
 
 		#process {
-			margin-left:230px;
+			
 		}
 
     	#orig,
@@ -32,17 +38,23 @@
     		width:4em;
     	}
 
-		#help {
-			float:left;
-			width:220px;
+    	.gray{
+			color:gray;
+		}
+
+		#help {			
+			margin: 1em auto;
+			width:350px;
 		}
 			#help table {
+				font-size:.95em;
 				margin:1em;
-				display:none;
-			}
-			#help table .gray{
-				color:gray;
-			}
+				display:inline-block;
+			}	
+				#help table * {
+					padding: 0;
+					margin:0;
+				}		
 			#help .click {
 				color:gray;
 				border-bottom:dotted gray 1px;
@@ -52,10 +64,19 @@
     </style>
 </head>
 <body>
-	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
+	<h2>Тренет по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>
+
 	<div id="page">
+		<div id="process">
+			<h3 class="gray">Сообразите как по итальянски будет</h3>
+			&laquo; <span id="orig"></span> &raquo;
+			<div id="trans"></div>
+			<br>
+			<button>Еще</button>
+		</div>
 		<div id="help">
-			<div class="click">подсказка</div>
+			<div class="click gray">шпаргалка</div>
 
 			<table>
 				<tr><td>mangiare</td><td class="gray">есть</td></tr>
@@ -63,7 +84,7 @@
 				<tr><td>giocare</td><td class="gray">играть</td></tr>
 				<tr><td>lavorare</td><td class="gray">работать</td></tr>
 				<tr><td>amare</td><td class="gray">любить</td></tr>
-				<tr><td>ascoltare</td><td class="gray">смотреть</td></tr>
+				<tr><td>ascoltare</td><td class="gray">слушать</td></tr>
 				<tr><td>imparare</td><td class="gray">учить, узнавать</td></tr>
 				<tr><td>abitare</td><td class="gray">жить</td></tr>
 			</table>
@@ -79,15 +100,6 @@
 				<tr><td>loro</td><td class="gray">они</td></tr>
 			</table>
 
-		</div>
-
-
-		<div id="process">
-			<div id="orig"></div>
-			<hr>
-			<div id="trans"></div>
-			<br>
-			<button>Еще</button>
 		</div>
 	</div>
 	<script type="text/javascript">
@@ -107,12 +119,13 @@
 		});
 
 		$('#help .click').click(function () {
-			$('#help table').slideToggle(500);
+			$('#help table').toggle(500);
 		});
 
 		$(function () {
 			
-			$('button').click();			
+			$('button').click();	
+			$('#help .click').click();		
 		});
 	</script>
 	<script type="text/javascript">

@@ -25,29 +25,37 @@ function Dict() {
 		['hanno','']
 	];
 
-	this.questions = [
-		['chi','я'],
-		['che cosa','ты'],
-		['lui','он'],
-		['lei','она'],
-		['Lei','Вы'],
-		['noi','мы'],
-		['voi','вы (множ.)'],
-		['loro','они']
+	this.question_neutral = [
+		['Chi','Кто'],
+		['Che cosa','Что'],		
+		['Dove','Где'],
+		['Quando','Когда'],
+		['Perche','Зачем'],
+		['Come','Как'],
+		['Quanto','Сколько'],
 	];
 
+	this.question_direct = [
+		this.question_neutral[1],
+		this.question_neutral[2],
+		this.question_neutral[3],
+		this.question_neutral[4],
+		this.question_neutral[5],
+		this.question_neutral[6],
+	]
 
-	// this.verb_inf = [		
-	// 		['parla', 'говорит'],		
-	// 		['mangiare', 'ест'],		
-	// 		['guardato', 'смотрит'],		
-	// 		['gioco', 'играет'],		
-	// 		['lavoro', 'работает'],		
-	// 		['amo', 'любит'],		
-	// 		['ascolto', 'слушает'],		
-	// 		['imparo', 'учит'],		
-	// 		['abito', 'живет']		
-	// ]
+
+	this.verb_inf = [		
+			['parla', 'говорит'],		
+			['mangiare', 'ест'],		
+			['guardare', 'смотрит'],		
+			['giocare', 'играет'],		
+			['lavorare', 'работает'],		
+			['amare', 'любит'],		
+			['ascoltare', 'слушает'],		
+			['imparare', 'учит'],		
+			['abitare', 'живет']		
+	]
 
 	this.verb = [		
 		[
@@ -280,18 +288,23 @@ function get_val(arr,token,vars) {
 
 function get_strings(dict) {
 	var templates = [		
-		'<pronoun[x]> <verb[?][x]>',
-		'<pronoun[x]> <not> <verb[?][x]>',
-		'<pronoun[x]> <help_verb[x]> <verb_past[?][x]>',
-		'<pronoun[x]> <not> <help_verb[x]> <verb_past[?][x]>'
-		 // '<pronoun[5]> <help_verb[5]> <verb_past[0][5]>',
+		'<pronoun[x]> (<not>) <verb[?][x]>',
+		'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>',
+		
+		// questions in present 
+		'<question_neutral[?]> <verb_inf[?]>?',
+		'<question_direct[?]> (<pronoun[x]>) <verb[?][x]>?',
+
+		// questions in past
+		'<question_neutral[?]> <verb_past[?][1]>?',
+		'<question_direct[?]> (<pronoun[x]>) <verb_past[?][x]>?',
 	];
 
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	
 	var vars = {};
 	l(template);
 
-	var words = template.match(/<\S+>/g);
+	var words = template.match(/\(?<\S+>\)?/g);
 	var result = {
 		0:template,
 		1:template,
@@ -302,7 +315,14 @@ function get_strings(dict) {
 	for (var i=0;i<words.length;i++) {
 		var word_token_orig = words[i];
 		var word_token = words[i];
-		// handle tokens without brackets
+		// handle optional words
+		if (word_token.match(/\(\w+\)/) && Math.random() >= 0.5) {
+			result[0] = result[0].replace(word_token_orig,'');
+			result[1] = result[1].replace(word_token_orig,'');
+			continue;
+		}
+
+		// handle tokens without rect brackets
 		word_token = word_token.replace(/(\w)>/,'$1[?]>');
 		var type = word_token.match(/<(\w+)\[/)[1];
 		var index_token = word_token.match(/\[.*\]/)[0];
@@ -313,6 +333,8 @@ function get_strings(dict) {
 		result[0] = result[0].replace(word_token_orig,word[1-rnd]);
 		result[1] = result[1].replace(word_token_orig,word[rnd]);
 	}
+	result[0] = result[0].replace(/\s+/g,' ');
+	result[1] = result[1].replace(/\s+/g,' ');
 	return result;
 }
 

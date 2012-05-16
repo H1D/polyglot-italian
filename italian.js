@@ -162,14 +162,14 @@ function Dict() {
 			['parlato', 'говорили'],
 		],
 		[
-			['mangato', 'ел'],
-			['mangato', 'ел'],
-			['mangato', 'ел'],
-			['mangato', 'елa'],
-			['mangato', 'ели'],
-			['mangato', 'ели'],
-			['mangato', 'ели'],
-			['mangato', 'ели'],
+			['mangiato', 'ел'],
+			['mangiato', 'ел'],
+			['mangiato', 'ел'],
+			['mangiato', 'елa'],
+			['mangiato', 'ели'],
+			['mangiato', 'ели'],
+			['mangiato', 'ели'],
+			['mangiato', 'ели'],
 		],
 		[
 			['guardato', 'смотрел'],
@@ -291,13 +291,13 @@ function get_strings(dict) {
 		'<pronoun[x]> (<not>) <verb[?][x]>',
 		'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>',
 		
-		// questions in present 
-		'<question_neutral[?]> <verb_inf[?]>?',
-		'<question_direct[?]> (<pronoun[x]>) <verb[?][x]>?',
+		// // questions in present 
+		'<question_neutral[?]> <verb[?][2]>?',
+		'<question_direct[?]> <pronoun[x]> <verb[?][x]>?',
 
 		// questions in past
-		'<question_neutral[?]> <verb_past[?][1]>?',
-		'<question_direct[?]> (<pronoun[x]>) <verb_past[?][x]>?',
+		'<question_neutral[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
+		'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
 	];
 
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	

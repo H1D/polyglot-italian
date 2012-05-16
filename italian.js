@@ -25,26 +25,50 @@ function Dict() {
 		['hanno','']
 	];
 
-	this.verb = [
+	this.questions = [
+		['chi','я'],
+		['che cosa','ты'],
+		['lui','он'],
+		['lei','она'],
+		['Lei','Вы'],
+		['noi','мы'],
+		['voi','вы (множ.)'],
+		['loro','они']
+	];
+
+
+	// this.verb_inf = [		
+	// 		['parla', 'говорит'],		
+	// 		['mangiare', 'ест'],		
+	// 		['guardato', 'смотрит'],		
+	// 		['gioco', 'играет'],		
+	// 		['lavoro', 'работает'],		
+	// 		['amo', 'любит'],		
+	// 		['ascolto', 'слушает'],		
+	// 		['imparo', 'учит'],		
+	// 		['abito', 'живет']		
+	// ]
+
+	this.verb = [		
 		[
-			['parlato', 'говорил'],
-			['parlato', 'говорил'],
-			['parlato', 'говорил'],
-			['parlato', 'говорила'],
-			['parlato', 'говорили'],
-			['parlato', 'говорили'],
-			['parlato', 'говорили'],
-			['parlato', 'говорили'],
+			['parlo', 'говорю'],
+			['parli', 'говоришь'],
+			['parla', 'говорит'],
+			['parla', 'говорит'],
+			['parla', 'говорите'],
+			['parliamo', 'говорим'],
+			['parlate', 'говорите'],
+			['parlano', 'говорят'],
 		],
 		[
-			['mangato', 'ел'],
-			['mangato', 'ел'],
-			['mangato', 'ел'],
-			['mangato', 'елa'],
-			['mangato', 'ели'],
-			['mangato', 'ели'],
-			['mangato', 'ели'],
-			['mangato', 'ели']
+			['mango', 'ем'],
+			['mangi', 'ешь'],
+			['manga', 'ест'],
+			['manga', 'ест'],
+			['manga', 'едите'],
+			['mangiamo', 'едим'],
+			['mangate', 'едите'],
+			['mangano', 'едят']
 		],
 		[
 			['guardato', 'смотрю'],
@@ -260,7 +284,7 @@ function get_strings(dict) {
 		'<pronoun[x]> <not> <verb[?][x]>',
 		'<pronoun[x]> <help_verb[x]> <verb_past[?][x]>',
 		'<pronoun[x]> <not> <help_verb[x]> <verb_past[?][x]>'
-		// '<pronoun[2]> <help_verb[2]> <verb_past[?][2]>',
+		 // '<pronoun[5]> <help_verb[5]> <verb_past[0][5]>',
 	];
 
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	

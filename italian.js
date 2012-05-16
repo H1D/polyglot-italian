@@ -1,5 +1,5 @@
 function l (msg) {
-	// console.log(msg);
+	 // console.log(msg);
 }
 
 function Dict() {
@@ -8,35 +8,46 @@ function Dict() {
 		['tu','ты'],
 		['lui','он'],
 		['lei','она'],
-		['lei','Вы'],
+		['Lei','Вы'],
 		['noi','мы'],
 		['voi','вы (множ.)'],
 		['loro','они']
 	];
 
+	this.help_verb = [
+		['ho',''],
+		['hai',''],
+		['ha',''],
+		['ha',''],
+		['ha',''],
+		['abbiamo',''],
+		['avete',''],
+		['hanno','']
+	];
+
 	this.verb = [
 		[
-			['parlo', 'говорю'],
-			['parli', 'говоришь'],
-			['parla', 'говорит'],
-			['parla', 'говорит'],
-			['parla', 'говорите'],
-			['parliamo', 'говорим'],
-			['parlate', 'говорите'],
-			['parlano', 'говорят'],
+			['parlato', 'говорил'],
+			['parlato', 'говорил'],
+			['parlato', 'говорил'],
+			['parlato', 'говорила'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
 		],
 		[
-			['mango', 'ем'],
-			['mangi', 'ешь'],
-			['manga', 'ест'],
-			['manga', 'ест'],
-			['manga', 'едите'],
-			['mangiamo', 'едим'],
-			['mangate', 'едите'],
-			['mangano', 'едят']
+			['mangato', 'ел'],
+			['mangato', 'ел'],
+			['mangato', 'ел'],
+			['mangato', 'елa'],
+			['mangato', 'ели'],
+			['mangato', 'ели'],
+			['mangato', 'ели'],
+			['mangato', 'ели']
 		],
 		[
-			['guardo', 'смотрю'],
+			['guardato', 'смотрю'],
 			['guardi', 'смотришь'],
 			['guarda', 'смотрит'],
 			['guarda', 'смотрит'],
@@ -107,6 +118,99 @@ function Dict() {
 		]
 	];
 
+	this.verb_past = [
+		[
+			['parlato', 'говорил'],
+			['parlato', 'говорил'],
+			['parlato', 'говорил'],
+			['parlato', 'говорилa'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
+			['parlato', 'говорили'],
+		],
+		[
+			['mangato', 'ел'],
+			['mangato', 'ел'],
+			['mangato', 'ел'],
+			['mangato', 'елa'],
+			['mangato', 'ели'],
+			['mangato', 'ели'],
+			['mangato', 'ели'],
+			['mangato', 'ели'],
+		],
+		[
+			['guardato', 'смотрел'],
+			['guardato', 'смотрел'],
+			['guardato', 'смотрел'],
+			['guardato', 'смотрелa'],
+			['guardato', 'смотрели'],
+			['guardato', 'смотрели'],
+			['guardato', 'смотрели'],
+			['guardato', 'смотрели'],
+		],
+		[
+			['giocato', 'играл'],
+			['giocato', 'играл'],
+			['giocato', 'играл'],
+			['giocato', 'игралa'],
+			['giocato', 'играли'],
+			['giocato', 'играли'],
+			['giocato', 'играли'],
+			['giocato', 'играли'],
+		],
+		[
+			['lavorato', 'работал'],
+			['lavorato', 'работал'],
+			['lavorato', 'работал'],
+			['lavorato', 'работалa'],
+			['lavorato', 'работали'],
+			['lavorato', 'работали'],
+			['lavorato', 'работали'],
+			['lavorato', 'работали'],
+		],
+		[
+			['amato', 'любил'],
+			['amato', 'любил'],
+			['amato', 'любил'],
+			['amato', 'любилa'],
+			['amato', 'любили'],
+			['amato', 'любили'],
+			['amato', 'любили'],
+			['amato', 'любили'],
+		],
+		[
+			['ascoltato', 'слушал'],
+			['ascoltato', 'слушал'],
+			['ascoltato', 'слушал'],
+			['ascoltato', 'слушалa'],
+			['ascoltato', 'слушали'],
+			['ascoltato', 'слушали'],
+			['ascoltato', 'слушали'],
+			['ascoltato', 'слушали'],
+		],
+		[
+			['imparato', 'учил'],
+			['imparato', 'учил'],
+			['imparato', 'учил'],
+			['imparato', 'училa'],
+			['imparato', 'учили'],
+			['imparato', 'учили'],
+			['imparato', 'учили'],
+			['imparato', 'учили'],
+		],
+		[
+			['abitato', 'жил'],
+			['abitato', 'жил'],
+			['abitato', 'жил'],
+			['abitato', 'жилa'],
+			['abitato', 'жили'],
+			['abitato', 'жили'],
+			['abitato', 'жили'],
+			['abitato', 'жили'],
+		]
+	];
+
 	this.not = [
 		['non','не']
 	]
@@ -151,9 +255,12 @@ function get_val(arr,token,vars) {
 
 
 function get_strings(dict) {
-	var templates = [
+	var templates = [		
+		'<pronoun[x]> <verb[?][x]>',
 		'<pronoun[x]> <not> <verb[?][x]>',
-		'<pronoun[x]> <verb[?][x]>'
+		'<pronoun[x]> <help_verb[x]> <verb_past[?][x]>',
+		'<pronoun[x]> <not> <help_verb[x]> <verb_past[?][x]>'
+		// '<pronoun[2]> <help_verb[2]> <verb_past[?][2]>',
 	];
 
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	
@@ -187,9 +294,19 @@ function get_strings(dict) {
 
 
 // utils
-var verb_root = ['mang', 'guard', 'gioc', 'lavor', 'am', 'ascolt', 'impar', 'abit'];
+var verb_root = [
+	['parl','говорил'],
+	['mang','ел'],
+	['guard','смотрел'],
+	['gioc','играл'],
+	['lavor','работал'],
+	['am','любил'],
+	['ascolt','слушал'],
+	['impar','учил'],
+	['abit','жил']
+];
 
-function gen (verb) {
+function gen_norm (verb) {
 	console.log('[')
 	var verb_mod = {
 		io:'o',
@@ -204,5 +321,24 @@ function gen (verb) {
 	for (var i in verb_mod) {
 		console.log("['"+verb+verb_mod[i]+"', ''],");
 	};
+	console.log('],')
+}
+
+function gen_past (verb,verb_r) {
+	console.log('[')
+	
+
+	
+	console.log("['"+verb+"ato', '"+verb_r+"'],");
+	console.log("['"+verb+"ato', '"+verb_r+"'],");
+	console.log("['"+verb+"ato', '"+verb_r+"'],");
+	console.log("['"+verb+"ato', '"+verb_r+"a'],");
+
+	console.log("['"+verb+"ato', '"+verb_r+"и'],");
+	console.log("['"+verb+"ato', '"+verb_r+"и'],");
+	console.log("['"+verb+"ato', '"+verb_r+"и'],");
+	console.log("['"+verb+"ato', '"+verb_r+"и'],");
+	
+	
 	console.log('],')
 }

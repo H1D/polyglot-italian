@@ -17,7 +17,7 @@
     	#page{
     		width:600px;
     		background: white;
-    		margin: 100px auto;
+    		margin: 1em auto;
     		padding-top:.5em;
 
     		height:100%;
@@ -44,7 +44,7 @@
 
 		#help {			
 			margin: 1em auto;
-			width:450px;
+			width:100%;
 		}
 			#help table {
 				font-size:.95em;
@@ -65,8 +65,9 @@
 </head>
 <body>
 	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
-	<h2>Тренет по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>
-<a href="mailto:Suschev.Artem@gmail.com?subject=Тренер 'Полиглот'">написать автору</a>
+	<!-- <h2>Тренер по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>	 -->
+	<span class="gray">Сейчас готов генератор фраз <b>только для первого</b> урока. Следите за обновлениями.</span>
+
 	<div id="page">
 		<div id="process">
 			<h3 class="gray">Сообразите, как по итальянски будет</h3>
@@ -77,6 +78,17 @@
 		</div>
 		<div id="help">
 			<div class="click gray">шпаргалка</div>
+
+			<table>
+				<tr><td>io</td><td class="gray">я</td></tr>
+				<tr><td>tu</td><td class="gray">ты</td></tr>
+				<tr><td>lui</td><td class="gray">он</td></tr>
+				<tr><td>lei</td><td class="gray">она</td></tr>
+				<tr><td>Lei</td><td class="gray">Вы</td></tr>
+				<tr><td>noi</td><td class="gray">мы</td></tr>
+				<tr><td>voi</td><td class="gray">вы (множ.)</td></tr>
+				<tr><td>loro</td><td class="gray">они</td></tr>
+			</table>
 
 			<table>
 				<tr><td>mangiare</td><td class="gray">есть</td></tr>
@@ -90,14 +102,14 @@
 			</table>
 
 			<table>
-				<tr><td>io</td><td class="gray">я</td></tr>
-				<tr><td>tu</td><td class="gray">ты</td></tr>
-				<tr><td>lui</td><td class="gray">он</td></tr>
-				<tr><td>lei</td><td class="gray">она</td></tr>
-				<tr><td>lei</td><td class="gray">Вы</td></tr>
-				<tr><td>noi</td><td class="gray">мы</td></tr>
-				<tr><td>voi</td><td class="gray">вы (множ.)</td></tr>
-				<tr><td>loro</td><td class="gray">они</td></tr>
+				<tr><td>io ho</td><td class="gray">я имею</td></tr>
+				<tr><td>tu hai</td><td class="gray">ты имеешь</td></tr>
+				<tr><td>lui ha</td><td class="gray">он имеет</td></tr>
+				<tr><td>lei ha</td><td class="gray">она имеет</td></tr>
+				<tr><td>Lei ha</td><td class="gray">Вы имеете</td></tr>
+				<tr><td>noi abbiamo</td><td class="gray">мы имеем</td></tr>
+				<tr><td>voi avete</td><td class="gray">вы имеете</td></tr>
+				<tr><td>loro hanno</td><td class="gray">они имеют</td></tr>
 			</table>
 
 		</div>
@@ -119,7 +131,7 @@
 		});
 
 		$('#help .click').click(function () {
-			$('#help table').toggle(500);
+			$('#help table').toggle();
 		});
 
 		$(function () {
@@ -170,5 +182,6 @@
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/14554246" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<a href="mailto:Suschev.Artem@gmail.com?subject=Тренер 'Полиглот'">написать автору</a>
 </body>
 </html>

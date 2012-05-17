@@ -2,6 +2,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>Тренер по телепрограмме Полиглот (итальянский)</title>
+	<link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
 	<script type="text/javascript"
              src="italian.js"></script>
     <script type="text/javascript"
@@ -11,7 +12,7 @@
     	body {	
     		font:sans;    		
     		background:#EFEFEF;
-    		    		text-align:center;
+    		text-align:center;
     	}
 
     	#page{
@@ -31,6 +32,19 @@
     	#trans {
     		height:2em;
     		font-size: 1.8em;
+    	}
+
+    	#orig:before {
+    		content:"\00AB";
+    	}
+
+    	#orig:after {
+    		content:"\00BB";
+    	}
+
+    	#trans {
+    		font-family: Fondamento;
+			margin-top: 1em;
     	}
 
     	button {    		
@@ -71,11 +85,13 @@
 	<div id="page">
 		<div id="process">
 			<h3 class="gray">Сообразите, как по итальянски будет</h3>
-			&laquo; <span id="orig"></span> &raquo;
+			<div id="orig"></div>
 			<div id="trans"></div>
 			<br>
 			<button>Еще</button>
 		</div>
+		<!-- <input id="speak" type="button" value="speak"/>
+		<div id="sound_element"></div> -->
 		<div id="help">
 			<div class="click gray">шпаргалка</div>
 
@@ -143,6 +159,14 @@
 		$('#help .click').click(function () {
 			$('#help table').toggle();
 		});
+
+		window.speak_italian = function (url) { $('#sound_element').html("<embed src='"+url+"' hidden=true autostart=true loop=false>"); }
+
+		$('#speak').click(function () {
+            var s = document.createElement("script");
+            s.src = 'http://api.microsofttranslator.com/V2/Ajax.svc/Speak?oncomplete=speak_italian&appId=Bearer '+encodeURIComponent('TTatEtN_72M1xmXzxs03PSSsyd3hg38q3tCrSUnMElJYlYworIi8uj76DyQcoaT9c')+'&text='+strings[1]+'&language=en';
+            document.getElementsByTagName("head")[0].appendChild(s);      	
+		})
 
 		$(function () {
 			

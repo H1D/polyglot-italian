@@ -27,21 +27,16 @@ function Dict() {
 
 	this.question_neutral = [
 		['Chi','Кто'],
+		
+	];
+
+	this.question_direct = [
 		['Che cosa','Что'],		
 		['Dove','Где'],
 		['Quando','Когда'],
 		['Perche','Зачем'],
 		['Come','Как'],
 		['Quanto','Сколько'],
-	];
-
-	this.question_direct = [
-		this.question_neutral[1],
-		this.question_neutral[2],
-		this.question_neutral[3],
-		this.question_neutral[4],
-		this.question_neutral[5],
-		this.question_neutral[6],
 	]
 
 
@@ -71,9 +66,9 @@ function Dict() {
 		[
 			['mango', 'ем'],
 			['mangi', 'ешь'],
-			['manga', 'ест'],
-			['manga', 'ест'],
-			['manga', 'едите'],
+			['mangia', 'ест'],
+			['mangia', 'ест'],
+			['mangia', 'едите'],
 			['mangiamo', 'едим'],
 			['mangate', 'едите'],
 			['mangano', 'едят']
@@ -296,7 +291,7 @@ function get_strings(dict) {
 		'<question_direct[?]> <pronoun[x]> <verb[?][x]>?',
 
 		// questions in past
-		'<question_neutral[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
+		'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?',
 		'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
 	];
 
@@ -333,8 +328,8 @@ function get_strings(dict) {
 		result[0] = result[0].replace(word_token_orig,word[1-rnd]);
 		result[1] = result[1].replace(word_token_orig,word[rnd]);
 	}
-	result[0] = result[0].replace(/\s+/g,' ');
-	result[1] = result[1].replace(/\s+/g,' ');
+	result[0] = capitaliseFirstLetter(result[0].replace(/\s+/g,' '));
+	result[1] = capitaliseFirstLetter(result[1].replace(/\s+/g,' '));
 	return result;
 }
 
@@ -387,4 +382,8 @@ function gen_past (verb,verb_r) {
 	
 	
 	console.log('],')
+}
+function capitaliseFirstLetter(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }

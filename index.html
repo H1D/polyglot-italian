@@ -3,172 +3,100 @@
 	<meta charset="utf-8">
 	<title>Тренер по телепрограмме Полиглот (итальянский)</title>
 	<link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
-	<script type="text/javascript"
-             src="italian.js"></script>
-    <script type="text/javascript"
-             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="\js\lib\jquery-1.6.3.min.js"></script>
+    <script type="text/javascript" src="\js\lib\underscore-min.js"></script>
+    <script type="text/javascript" src="\js\dicts\dict1.js"></script>
+    <script type="text/javascript" src="\js\italian.js"></script>
 
-    <style type="text/css">
-    	body {	
-    		font:sans;    		
-    		background:#EFEFEF;
-    		text-align:center;
-    	}
+    <link rel="stylesheet" type="text/css" href="\css\style.css">
 
-    	#page{
-    		width:600px;
-    		background: white;
-    		margin: 1em auto;
-    		padding-top:.5em;
-
-    		height:100%;
-    	}   
-
-		#process {
-			
-		}
-
-    	#orig,
-    	#trans {
-    		height:2em;
-    		font-size: 1.8em;
-    	}
-
-    	#orig:before {
-    		content:"\00AB";
-    	}
-
-    	#orig:after {
-    		content:"\00BB";
-    	}
-
-    	#trans {
-    		font-family: Fondamento;
-			margin-top: 1em;
-    	}
-
-    	button {    		
-    		font-size:2em;
-    		width:4em;
-    	}
-
-    	.gray{
-			color:gray;
-		}
-
-		#help {			
-			margin: 1em auto;
-			width:100%;
-		}
-			#help table {
-				font-size:.95em;
-				margin:1em;
-				display:inline-block;
-			}	
-				#help table * {
-					padding: 0;
-					margin:0;
-				}		
-			#help .click {
-				color:gray;
-				border-bottom:dotted gray 1px;
-				cursor:pointer;
-			}
 
     </style>
 </head>
 <body>
 	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
 	<!-- <h2>Тренер по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>	 -->
-	<span class="gray">Сейчас готов генератор фраз <b>только для первого</b> урока. Следите за обновлениями.</span>
+	<span class="gray">Не переживайте, друзья! Тренер по <b>второму уроку</b> будет со дня на день.</span>
 
-	<div id="page">
+	<div id="page">		
+		<h3 class="gray">Сообразите, как по итальянски будет</h3>
+
 		<div id="process">
-			<h3 class="gray">Сообразите, как по итальянски будет</h3>
+			
 			<div id="orig"></div>
 			<div id="trans"></div>
 			<br>
 			<button>Еще</button>
+
+			<div id="help">
+				<div class="click gray">шпаргалка</div>
+
+			</div>			
 		</div>
+		<div class="click gray" id="focus">сосредоточиться</div>
 		<!-- <input id="speak" type="button" value="speak"/>
 		<div id="sound_element"></div> -->
-		<div id="help">
-			<div class="click gray">шпаргалка</div>
-
-			<table>
-				<tr><td>io</td><td class="gray">я</td></tr>
-				<tr><td>tu</td><td class="gray">ты</td></tr>
-				<tr><td>lui</td><td class="gray">он</td></tr>
-				<tr><td>lei</td><td class="gray">она</td></tr>
-				<tr><td>Lei</td><td class="gray">Вы</td></tr>
-				<tr><td>noi</td><td class="gray">мы</td></tr>
-				<tr><td>voi</td><td class="gray">вы (множ.)</td></tr>
-				<tr><td>loro</td><td class="gray">они</td></tr>
-			</table>
-
-			<table>
-				<tr><td>mangiare</td><td class="gray">есть</td></tr>
-				<tr><td>guardare</td><td class="gray">смотреть</td></tr>
-				<tr><td>giocare</td><td class="gray">играть</td></tr>
-				<tr><td>lavorare</td><td class="gray">работать</td></tr>
-				<tr><td>amare</td><td class="gray">любить</td></tr>
-				<tr><td>ascoltare</td><td class="gray">слушать</td></tr>
-				<tr><td>imparare</td><td class="gray">учить, узнавать</td></tr>
-				<tr><td>abitare</td><td class="gray">жить</td></tr>
-			</table>
-
-			<table>
-				<tr><td>io ho</td><td class="gray">я имею</td></tr>
-				<tr><td>tu hai</td><td class="gray">ты имеешь</td></tr>
-				<tr><td>lui ha</td><td class="gray">он имеет</td></tr>
-				<tr><td>lei ha</td><td class="gray">она имеет</td></tr>
-				<tr><td>Lei ha</td><td class="gray">Вы имеете</td></tr>
-				<tr><td>noi abbiamo</td><td class="gray">мы имеем</td></tr>
-				<tr><td>voi avete</td><td class="gray">вы имеете</td></tr>
-				<tr><td>loro hanno</td><td class="gray">они имеют</td></tr>
-			</table>
-
-			<table>
-				<tr><td>Chi</td><td class="gray">Кто</td></tr>
-				<tr><td>Che cosa</td><td class="gray">Что</td></tr>
-				<tr><td>Dove</td><td class="gray">Где</td></tr>
-				<tr><td>Quando</td><td class="gray">Когда</td></tr>
-				<tr><td>Perche</td><td class="gray">Зачем</td></tr>
-				<tr><td>Come</td><td class="gray">Как</td></tr>
-				<tr><td>Quanto</td><td class="gray">Сколько</td></tr>
-			</table>
-
-		</div>
+		
 	</div>
 	<script type="text/javascript">
-		var dict = new Dict();
-		var strings = get_strings(dict);
-
-		$('button').click(function () {
-			if ($(this).html() === 'Еще') {
-				$('#trans').html(' ');			
-				$('#orig').html(strings[0]);				
-				$(this).html('Ответ');
-			} else {
-				$('#trans').html(strings[1]);				
-				$(this).html('Еще')
-				strings = get_strings(dict);
-			}
-		});
-
-		$('#help .click').click(function () {
-			$('#help table').toggle();
-		});
-
-		window.speak_italian = function (url) { $('#sound_element').html("<embed src='"+url+"' hidden=true autostart=true loop=false>"); }
-
-		$('#speak').click(function () {
-            var s = document.createElement("script");
-            s.src = 'http://api.microsofttranslator.com/V2/Ajax.svc/Speak?oncomplete=speak_italian&appId=Bearer '+encodeURIComponent('TTatEtN_72M1xmXzxs03PSSsyd3hg38q3tCrSUnMElJYlYworIi8uj76DyQcoaT9c')+'&text='+strings[1]+'&language=en';
-            document.getElementsByTagName("head")[0].appendChild(s);      	
-		})
-
 		$(function () {
+			var dict = new Dict_1();
+			var strings = get_strings(dict);
+
+			// build helpers
+			for (type in dict.helpers) {
+				var $table = $('<table><thead></thead><tbody></tbody></table>')
+							.appendTo('#help');
+				// header
+				$table.find('thead').append('<tr><td colspan=2>'+type+'</td></tr>');
+
+				//content
+				var $tbody = $table.find('tbody');
+
+				for (var i = 0; i < dict.helpers[type].length; i++) {
+					var it = dict.helpers[type][i][0];
+					var ru = dict.helpers[type][i][1];
+
+					$tbody.append('<tr><td>'+it+'</td><td class="gray">'+ru+'</td></tr>');					
+				};
+
+
+			}
+
+			// dim all but major
+			$('#focus').click(function () {
+				$('<div></div>')
+					.attr('id','lightbox')
+					.appendTo('body')
+					.fadeIn(300);
+			});
+
+			// remove dim
+			$('#lightbox').live('click', function () {$(this).fadeOut(300);});
+
+			$('button').click(function () {
+				if ($(this).html() === 'Еще') {
+					$('#trans').html(' ');			
+					$('#orig').html(strings[0]);				
+					$(this).html('Ответ');
+				} else {
+					$('#trans').html(strings[1]);				
+					$(this).html('Еще')
+					strings = get_strings(dict);
+				}
+			});
+
+			$('#help .click').click(function () {
+				$('#help table').toggle();
+			});
+
+			window.speak_italian = function (url) { $('#sound_element').html("<embed src='"+url+"' hidden=true autostart=true loop=false>"); }
+
+			$('#speak').click(function () {
+	            var s = document.createElement("script");
+	            s.src = 'http://api.microsofttranslator.com/V2/Ajax.svc/Speak?oncomplete=speak_italian&appId=Bearer '+encodeURIComponent('TTatEtN_72M1xmXzxs03PSSsyd3hg38q3tCrSUnMElJYlYworIi8uj76DyQcoaT9c')+'&text='+strings[1]+'&language=en';
+	            document.getElementsByTagName("head")[0].appendChild(s);      	
+			})
 			
 			$('button').click();	
 			$('#help .click').click();		

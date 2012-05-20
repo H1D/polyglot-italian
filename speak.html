@@ -1,0 +1,24 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>             
+    <script type="text/javascript"
+             src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var language = "en";
+        var format = "audio/mp3";
+        var option = "MinSize"
+        var text = "Use pixels to express.";
+        function speak() {            
+
+            jQuery.get("http://api.microsofttranslator.com//V2//http.svc//Speak?appId=TTatEtN_72M1xmXzxs03PSSsyd3hg38q3tCrSUnMElJYlYworIi8uj76DyQcoaT9c&text="+$('textarea').val()+"&language=it")
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <button onclick="speak();return false;">test</button>
+        <textarea></textarea>
+        <br />        
+    </div>
+</body>
+</html>

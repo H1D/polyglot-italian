@@ -3,12 +3,13 @@
 	<meta charset="utf-8">
 	<title>Тренер по телепрограмме Полиглот (итальянский)</title>
 	<link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="\js\lib\jquery-1.6.3.min.js"></script>
-    <script type="text/javascript" src="\js\lib\underscore-min.js"></script>
-    <script type="text/javascript" src="\js\dicts\dict1.js"></script>
-    <script type="text/javascript" src="\js\italian.js"></script>
+    <script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>
+    <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="js/italian.js"></script>
+    <script type="text/javascript" src="js/dicts/lesson1.js"></script>
+    <script type="text/javascript" src="js/dicts/lesson2.js"></script>    
 
-    <link rel="stylesheet" type="text/css" href="\css\style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
 
     </style>
@@ -16,9 +17,15 @@
 <body>
 	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
 	<!-- <h2>Тренер по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>	 -->
-	<span class="gray">Не переживайте, друзья! Тренер по <b>второму уроку</b> будет со дня на день.</span>
+	<span class="gray">Геренатор фраз по второму уроку частично готов.</span>
 
 	<div id="page">		
+		<ul id="lessons">
+			<li class="active">1</li>
+			<li>2</li>
+		</ul>
+		<div class="clear"></div>
+
 		<h3 class="gray">Сообразите, как по итальянски будет</h3>
 
 		<div id="process">
@@ -28,10 +35,13 @@
 			<br>
 			<button>Еще</button>
 
-			<div id="help">
-				<div class="click gray">шпаргалка</div>
+			<div>
+				<div id="help">
+					<div class="click gray">шпаргалка</div>
 
-			</div>			
+				</div>	
+				<div class="clear"></div>		
+			</div>
 		</div>
 		<div class="click gray" id="focus">сосредоточиться</div>
 		<!-- <input id="speak" type="button" value="speak"/>
@@ -39,13 +49,18 @@
 		
 	</div>
 	<script type="text/javascript">
-		$(function () {
-			var dict = new Dict_1();
-			var strings = get_strings(dict);
+		var dict;	
+		var strings;
+		var lesson_numb = 1;
+
+		function go_lesson() {
+			dict = new Dicts[lesson_numb]();
+			strings = get_strings(dict,Templates[lesson_numb]);
+
 
 			// build helpers
 			for (type in dict.helpers) {
-				var $table = $('<table><thead></thead><tbody></tbody></table>')
+				var $table = $('<table class="help_table"><thead></thead><tbody></tbody></table>')							
 							.appendTo('#help');
 				// header
 				$table.find('thead').append('<tr><td colspan=2>'+type+'</td></tr>');
@@ -59,9 +74,23 @@
 
 					$tbody.append('<tr><td>'+it+'</td><td class="gray">'+ru+'</td></tr>');					
 				};
-
-
 			}
+
+			$('button').html('Еще').click();	
+			$('#help .click').click();		
+		}
+
+		$(function () {
+			go_lesson();
+
+			// switch lessons
+			$('#lessons li').click(function () {
+				lesson_numb = parseInt($(this).html(),10);
+				$('#lessons li').removeClass('active');
+				$(this).addClass('active');
+				$('.help_table').remove();
+				go_lesson();
+			})
 
 			// dim all but major
 			$('#focus').click(function () {
@@ -82,7 +111,7 @@
 				} else {
 					$('#trans').html(strings[1]);				
 					$(this).html('Еще')
-					strings = get_strings(dict);
+					strings = get_strings(dict,Templates[lesson_numb]);
 				}
 			});
 

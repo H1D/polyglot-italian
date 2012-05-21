@@ -1,30 +1,23 @@
 function l (msg) {
-	 // console.log(msg);
+	// console.log(msg);
 }
 
+// dictionares container
+var Dicts = {}
+
+// templates container
+var Templates = {}
+
 function get_val(arr,token,vars) {
-	var parse = /\[(\d+|\?|\w)\]/.exec(token);
+	var parse = /\[[^\[\]]+\]/.exec(token);
 	// token
 	var part = parse[0];
-	// index
-	var index = parse[1];
-	if (index === '?') {
-		index = Math.round(Math.random()*(arr.length-1));
-	}
-	// handle vars
-	if (isNaN(index)) {
-		// fucking magic!! cuz' 0 is false but '0' is true
-		vars[index] = vars[index] || (vars[index] == 0 && '0') || Math.round(Math.random()*(arr.length-1));
-		l(index+':'+vars[index]);
-		index = vars[index];		
 
-	}
-
-	// cut parsed
-	var token = token.replace(part,'');
-
+	var res = get_index(part,vars,arr.length);
+	
 	//get value
-	var value = arr[index];
+	var value = arr[res[0]];
+	vars = res[1]
 
 	if (value.constructor === Array && 
 		value[0].constructor === String
@@ -32,25 +25,12 @@ function get_val(arr,token,vars) {
 		value[2] = vars;
 		return value;
 	} else {
-		return get_val(value,token,vars);
+		return get_val(value,token.replace(part,''),vars);
 	}
 }
 
 
-function get_strings(dict) {
-	var templates = [		
-		'<pronoun[x]> (<not>) <verb[?][x]>',
-		'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>',
-		
-		// // questions in present 
-		'<question_neutral[?]> <verb[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> <verb[?][x]>?',
-
-		// questions in past
-		'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
-	];
-
+function get_strings(dict,templates) {
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	
 	var vars = {};
 	l(template);
@@ -67,7 +47,7 @@ function get_strings(dict) {
 		var word_token_orig = words[i];
 		var word_token = words[i];
 		// handle optional words
-		if (word_token.match(/\(\w+\)/) && Math.random() >= 0.5) {
+		if (word_token.match(/\(.*\)/) && Math.random() >= 0.5) {
 			result[0] = result[0].replace(word_token_orig,'');
 			result[1] = result[1].replace(word_token_orig,'');
 			continue;
@@ -79,6 +59,10 @@ function get_strings(dict) {
 		var index_token = word_token.match(/\[.*\]/)[0];
 
 		var word = get_val(dict[type],index_token,vars);
+		for (var key in vars) {
+			l(""+key+":"+vars[key]+";");
+		};
+		l(vars)
 		vars = word[2];
 
 		result[0] = result[0].replace(word_token_orig,word[1-rnd]);
@@ -103,11 +87,12 @@ var verb_root = [
 	['abit','жил']
 ];
 
-function gen_norm (verb) {
+function gen_norm (verb,verb_r) {
 	console.log('[')
 	var verb_mod = {
 		io:'o',
 		tu:'i',
+		lui:'a',
 		lei:'a',
 		Lei:'a',
 		noi:'iamo',
@@ -115,8 +100,19 @@ function gen_norm (verb) {
 		loro:'ano'
 	};
 
+	var verb_mod_r = {
+		io:'ю',
+		tu:'ешь',
+		lui:'ет',
+		lei:'ет',
+		Lei:'ете',
+		noi:'ем',
+		voi:'ете',
+		loro:'ют'
+	};
+
 	for (var i in verb_mod) {
-		console.log("['"+verb+verb_mod[i]+"', ''],");
+		console.log("['"+verb+verb_mod[i]+"', '"+verb_r+verb_mod_r[i]+"'],");
 	};
 	console.log('],')
 }
@@ -144,31 +140,127 @@ function capitaliseFirstLetter(string)
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-function get_index(token,vars) {
+function get_index(raw_token,vars,length) {
 	// cut brackets
-
+	raw_token = raw_token.match(/^\[(.*)\]$/)[1];
 	// split subtokens
+	var tokens = raw_token.split(',');
 
 	// build function for each token
 	var cherckers = [];
-	for (var token in tokens) {
+	for (var i = tokens.length - 1; i >= 0; i--) {		
+		cherckers.push(get_checker(tokens[i]))
+	}
+
+	// get index
+	while (true) {
+		var x = Math.round(Math.random()*(length-1));
+
+		try {
+			for (var i = cherckers.length - 1; i >= 0; i--) {
+				if (!cherckers[i](x)) {
+					throw '';
+				}
+			}
+		}
+		catch(e) {
+			x = null;
+		}
+		finally {
+			if (x !== null) {
+				return [x,vars];
+			}
+		}	
+	}
+
+	function get_checker(token) {
 		// [:123]
-		if (token.match(/$:.*/)) {
+		if (token.match(/^:\d+$/)) {
 			var bound = parseInt(token.match(/^:(\d+)/)[1],10);
 
 			//TODO throw exception
 			if(isNaN(bound))
-				continue;
+				throw 'Error parsing token:'+token;
 
-			(function (x) {})();
+			return (function (x) { return function (index) {
+					if (index >= x) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			})(bound);
 		}
 
 		// [123:]
+		if (token.match(/^\d+:$/)) {
+			var bound = parseInt(token.match(/(\d+):$/)[1],10);
+
+			//TODO throw exception
+			if(isNaN(bound))
+				throw 'Error parsing token:'+token;
+
+			return (function (x) { return function (index) {
+					if (index <= x) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			})(bound);
+		}
 
 		// [123]
+		if (token.match(/^\d+$/)) {
+			var index = parseInt(token.match(/\d+/)[0],10);
+
+			//TODO throw exception
+			if(isNaN(index))
+				throw 'Error parsing token:'+token;
+
+			return (function (x) { return function (index) {
+					if (index !== x) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			})(index);
+		}
 
 		// [!subtoken]
+		if (token.match(/^!.*/)) {
+			
+			return (function (token) { return function (index) {
+					return !get_checker(token.substring(1),vars,length)(index);
+				}
+			})(token);
+		}
 
 		// [x]
+		if (token.match(/^\w$/)) {
+			
+			if (vars[token] === undefined ) {
+				vars[token] = Math.round(Math.random()*(length-1));
+			}
+
+
+			return (function (x) { return function (index) {
+					if (index !== x) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			})(vars[token]);
+		}
+
+		// [?]
+		if (token.match(/^\?$/)) {
+			return (function (x) { return function (index) {					
+						return true;				
+				}
+			})(vars[token]);
+		}
 	}
 }

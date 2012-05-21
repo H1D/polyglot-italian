@@ -10,8 +10,6 @@ body {
 	width:600px;
 	background: white;
 	margin: 1em auto;
-	padding-top:.5em;
-
 	height:80%;
 }   
 
@@ -84,6 +82,7 @@ button {
 		font-size:.95em;
 		margin:.3em;
 		display:inline-block;
+		float:left;
 	}	
 		#help table * {
 			padding: 0;
@@ -93,3 +92,32 @@ button {
 		#help table thead {
 			font-weight:bold;			
 		}		
+
+.clear {
+	clear:both;
+}
+
+/*LESSON MENU*/
+#lessons {
+	margin: 0;
+	padding: 0;
+	list-style:none;
+	display: block;
+	background-color: #EFEFEF;
+}
+	#lessons li {
+		display: inline-block;
+		padding: 0 1.3em 0 1.3em;
+		font-size:1.5em;		
+		margin: 0;
+		color:gray;
+		background-color: #EFEFEF;
+		cursor:pointer;
+	}
+
+	#lessons li.active,
+	#lessons li:hover {
+		color:black;
+		background-color: white;
+	}
+

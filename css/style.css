@@ -24,7 +24,7 @@ body {
 	height: 100%;
 	overflow: hidden;
 	position: fixed;
-	z-index: 100002;
+	z-index: 10002;
 	overflow-x: auto;
 	overflow-y: auto;
 	display:none;
@@ -32,14 +32,14 @@ body {
 
 #process {
 	position: relative;
-	z-index: 100003;
+	z-index: 10003;
 	background:white;
 	padding-bottom:10px;
 	border-radius: 3px;
 }
 
 #orig,
-#trans {
+#answer_row {
 	height:2em;
 	font-size: 1.8em;
 }
@@ -55,6 +55,30 @@ body {
 #trans {
 	font-family: Fondamento;
 	margin-top: 1em;
+}
+
+#speak {
+	position: relative;
+	top:8px;
+	cursor: default;
+	width:28px;
+	height:30px;
+	display: inline-block;
+	background-image:url('../img/speak.png');
+	background-repeat: no-repeat;	
+	background-position-x: 1px;
+	background-position-y: 1px;
+	border:1px gray solid;
+	border-radius:2px;
+	box-shadow: 1px 1px 2px 0px gray;
+	background-position:center;
+}
+
+#speak:active {
+	position: relative;
+	top:9px;
+	left:1px;
+	box-shadow: 0px 0px 0px 0px gray;
 }
 
 button {    		
@@ -121,3 +145,11 @@ button {
 		background-color: white;
 	}
 
+.addthis {
+	background-color: #EFEFEF;
+	text-align: center;
+}
+
+#sound {
+	display: none;
+}

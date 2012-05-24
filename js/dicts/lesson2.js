@@ -1,33 +1,33 @@
 Dicts[2] = Dict_2;
 Templates[2] = [
-		'<pronoun[x]> (<not>) <verb[?][x]>',
-		'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>',
+		[1,'<pronoun[x]> (<not>) <verb[?][x]>'],
+		[1,'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>'],
 		
 		// // questions in present 
-		'<question_neutral[?]> <verb[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> <verb[?][x]>?',
+		[1,'<question_neutral[?]> <verb[?][2]>?'],
+		[1,'<question_direct[?]> <pronoun[x]> <verb[?][x]>?'],
 
 		// questions in past
-		'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
+		[1,'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?'],
+		[1,'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?'],
 
 		// new
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
-				'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?',
-		'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>',
+		[6,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?'],
+		[6,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>'],
+
+		[1,'<question_neutral[?]> <be[x]> <pronoun[x]>?'],
+		[1,'<question_direct[1]> <be[x=[2,3,4]]> <pronoun[x]>?'],
+		[1,'<question_direct[1]> <pronoun[x=[!2,!3,!4]]> <be[x]>?'],
+
+		// male
+		[4,'<pronoun[x=[!3,!5,!6,!7]]> <be[x]> <occupation[!1,!4]>?'],
+		[4,'<pronoun[x=[!3,!5,!6,!7]]> <be[x]> <occupation[!1,!4]>'],
+
+		// female
+		[1,'<pronoun[x=[3]]> <be[x]> <occupation[!1,!3]>?'],
+		[1,'<pronoun[x=[3]]> <be[x]> <occupation[!1,!3]>'],
+
+		[6,'<phrase[?]>']
 	];
 
 
@@ -42,15 +42,15 @@ function Dict_2() {
 			['scrivere','писать']
 		],
 
-		союзы: [
+		'союзы': [
 			['e','и'],
 			['o','или'],
 			['ma','но'],
 			['se','если'],
-			['se','потому что'],
+			['perche','потому что'],
 		],
 
-		"глагол essere (быть)":[
+		'глагол essere (быть)':[
 			['io sono',''],
 			['tu sei',''],
 			['lui é',''],
@@ -61,7 +61,7 @@ function Dict_2() {
 			['loro sono',''],
 		],
 
-		"глагол fare":[
+		'глагол fare':[
 			['io faccio','я делаю'],
 			['tu fai','ты делаешь'],
 			['lui fa','он делает'],
@@ -70,6 +70,37 @@ function Dict_2() {
 			['noi facciamo','мы делаем'],
 			['voi fate','вы делаете'],
 			['loro fanno','они делают'],
+		],
+
+		'выражения':[
+			['Ciao','привет или пока'],
+			['Buon giorno','добрый день'],
+			['Buona sera','добрый вечер'],
+			['Buona notte','доброй ночи'],
+			['Arrivederci','до свидания'],
+			['Piacere','удовольствие'],
+			['Come sta?','Как Ваши дела?'],
+			['Come stai?','Как дела?'],
+			['Io sto bene','Всё хорошо'],			
+			['Io sto molto bene','Всё отлично'],
+			['Io sto male bene','Очень плохо'],
+			['Io sto cosi-cosi','Дела так себе'],
+			['Grazie','Спасибо'],
+			['Prego','Пожалуйста'],
+			['Scusi','прошу прощения'],			
+		],
+
+		'род деятельности':[
+			['attore','актер'],
+			['attrice','актриса'],
+			['scrittore','писатель'],
+			['studente','студент'],
+			['studentessa','студентка'],
+			['regista','режисер'],
+			['contabile','бухгалтер'],
+			['impiegato','офисный работник'],
+			['finanziere','финансист'],
+			['programmatore','программист'],
 		]
 	}
 
@@ -79,6 +110,45 @@ function Dict_2() {
 		['ma','но'],
 		['se','если'],
 		['perche','потому что'],
+	];
+
+	this.occupation = [
+		['attore','актер'],
+		['attrice','актриса'],
+		['scrittore','писатель'],
+		['studente','студент'],
+		['studentessa','студентка'],
+		['regista','режисер'],
+		['contabile','бухгалтер'],
+		['impiegato','офисный работник'],
+		['finanziere','финансист'],
+		['programmatore','программист'],
+	];
+
+	this.phrase = [
+		['Ciao','привет или пока'],
+		['Buon giorno','добрый день'],
+		['Buona sera','добрый вечер'],
+		['Buona notte','доброй ночи'],
+		['Arrivederci','до свидания'],
+		['Piacere','удовольствие'],
+		['Come sta?','Как Ваши дела?'],
+		['Come stai?','Как дела?'],
+		['Io sto bene','Всё хорошо'],			
+		['Io sto molto bene','Всё отлично'],
+		['Io sto male bene','Очень плохо'],
+		['Io sto cosi-cosi','Дела так себе'],
+		['Grazie','Спасибо'],
+		['Prego','Пожалуйста'],
+		['Scusi','прошу прощения'],
+	];
+
+	this.stuff = [
+		['tavolo','стол'],
+		['sedia','стул'],
+		['porta','дверь'],
+		['letto','кровать'],
+		['libro','книгу'],
 	];
 
 	this.be = [
@@ -155,7 +225,7 @@ function Dict_2() {
 			['lascia', 'позволяет'], 
 			['lascia', 'позволяет'], 
 			['lascia', 'позволяете'], 
-			['lasciiamo', 'позволяем'], 
+			['lasciamo', 'позволяем'], 
 			['lasciate', 'позволяете'], 
 			['lasciano', 'позволяют'], 
 		], 
@@ -259,5 +329,9 @@ function Dict_2() {
 
 	this.not = [
 		['non','не']
+	];
+
+	this.qst = [
+		['?','?']
 	]
 }

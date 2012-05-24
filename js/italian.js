@@ -9,12 +9,22 @@ var Dicts = {}
 var Templates = {}
 
 function get_val(arr,token,vars) {
+	// var assign?
+	var var_name = null;
+	if(token.match(/^\[\w=/)) {
+		var_name = token.match(/^\[(\w)=/)[1];
+		token = token.match(/^\[(\w)=(\[[^\[\]]+\])/)[2];
+	}
 	var parse = /\[[^\[\]]+\]/.exec(token);
 	// token
 	var part = parse[0];
-
+		
 	var res = get_index(part,vars,arr.length);
-	
+
+	if(var_name) {
+		vars[var_name] = res[0];
+	}
+
 	//get value
 	var value = arr[res[0]];
 	vars = res[1]
@@ -30,7 +40,19 @@ function get_val(arr,token,vars) {
 }
 
 
+function expand_templates(templates) {
+	res = []
+	for(var count in templates) {
+		for (var i = 0; i <= templates[count][0]; i++) {
+			res.push(templates[count][1])
+		};
+	}
+
+	return res;
+}
+
 function get_strings(dict,templates) {
+	var templates = expand_templates(templates);
 	var template = templates[Math.round(Math.random()*(templates.length-1))];	
 	var vars = {};
 	l(template);
@@ -68,24 +90,10 @@ function get_strings(dict,templates) {
 		result[0] = result[0].replace(word_token_orig,word[1-rnd]);
 		result[1] = result[1].replace(word_token_orig,word[rnd]);
 	}
-	result[0] = capitaliseFirstLetter(result[0].replace(/\s+/g,' '));
-	result[1] = capitaliseFirstLetter(result[1].replace(/\s+/g,' '));
+	result[0] = capitaliseFirstLetter(result[0].replace(/\s+/g,' ')).replace(/\s\?$/g,'?');
+	result[1] = capitaliseFirstLetter(result[1].replace(/\s+/g,' ')).replace(/\s\?$/g,'?');
 	return result;
 }
-
-
-// utils
-var verb_root = [
-	['parl','говорил'],
-	['mang','ел'],
-	['guard','смотрел'],
-	['gioc','играл'],
-	['lavor','работал'],
-	['am','любил'],
-	['ascolt','слушал'],
-	['impar','учил'],
-	['abit','жил']
-];
 
 function gen_norm (verb,verb_r) {
 	console.log('[')

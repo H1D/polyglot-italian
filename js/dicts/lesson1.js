@@ -1,15 +1,15 @@
 Dicts[1] = Dict_1;
 Templates[1] = [
-		'<pronoun[x]> (<not>) <verb[?][x]>',
-		'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>',
+		[3,'<pronoun[x]> (<not>) <verb[?][x]>'],
+		[3,'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>'],
 		
 		// // questions in present 
-		'<question_neutral[?]> <verb[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> <verb[?][x]>?',
+		[1,'<question_neutral[?]> <verb[?][2]>?'],
+		[3,'<question_direct[?]> <pronoun[x]> <verb[?][x]>?'],
 
 		// questions in past
-		'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?',
-		'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?',
+		[1,'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?'],
+		[3,'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?'],
 	];
 
 function Dict_1() {

@@ -3,11 +3,6 @@
 	<meta charset="utf-8">
 	<title>Тренер по телепрограмме Полиглот (итальянский)</title>
 	<link href='http://fonts.googleapis.com/css?family=Fondamento' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>
-    <script type="text/javascript" src="js/lib/underscore-min.js"></script>
-    <script type="text/javascript" src="js/italian.js"></script>
-    <script type="text/javascript" src="js/dicts/lesson1.js"></script>
-    <script type="text/javascript" src="js/dicts/lesson2.js"></script>    
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -16,10 +11,21 @@
 </head>
 <body>
 	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
-	<!-- <h2>Тренер по телепрограмме канала &laquo;Культура&raquo; &mdash; <a href="http://www.tvkultura.ru/page.html?cid=12848">&laquo;Полиглот итальянский&raquo;</a> </h2>	 -->
-	<span class="gray">Геренатор фраз по второму уроку частично готов.</span>
 
-	<div id="page">		
+
+
+
+	<div id="page">	
+		<!-- AddThis Button BEGIN -->
+			<div class="addthis_toolbox addthis_default_style addthis">
+				<a class="addthis_button_vk"></a>
+				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+				<a class="addthis_button_tweet"></a>
+				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+				<a class="addthis_counter addthis_pill_style"></a>
+			</div>	
+		<!-- AddThis Button END -->	
+
 		<ul id="lessons">
 			<li class="active">1</li>
 			<li>2</li>
@@ -31,7 +37,7 @@
 		<div id="process">
 			
 			<div id="orig"></div>
-			<div id="trans"></div>
+			<div id="answer_row"><span id="trans"></span> <span id="speak"></span></div>
 			<br>
 			<button>Еще</button>
 
@@ -48,6 +54,57 @@
 		<div id="sound_element"></div> -->
 		
 	</div>
+
+	<script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>
+    <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="js/italian.js"></script>
+    <script type="text/javascript" src="js/dicts/lesson1.js"></script>
+    <script type="text/javascript" src="js/dicts/lesson2.js"></script>    
+
+    <script type="text/javascript">var m$_translator_token = null;</script>
+    <script type="text/javascript" src="http://polyglot-italian.appspot.com/"></script>
+    <script type="text/javascript" src="js/lib/jquery.sound_.js"></script>
+    <script type="text/javascript">
+        var i = 0;
+        var speak_url = null;
+
+        function save_speak_url(data) {
+        	speak_url = data;        	
+        }
+
+        function speak() {            
+        	var audio = document.createElement("audio");
+
+        	function HTML5_play(){		        
+		        audio.src = speak_url;
+		        audio.addEventListener("ended", function () {
+		            $(audio).remove();
+		        }, false);
+		        audio.play();   		        
+		    }
+
+		    function HTML4_play(){
+	            $('#embed_player'+i).remove();
+	            i = i+1;
+	            $.fn.soundPlay({
+	                    url: speak_url,
+	                    playerId: 'embed_player'+i,
+	                    command: 'play'});         
+	        }
+
+	        if (audio && audio.hasOwnProperty('src')) {
+	        	HTML5_play();
+	        } else {
+	        	HTML4_play();
+	        } 
+        }
+
+        function load_speak_wav (){
+        	if (m$_translator_token){
+	            jQuery.getScript("http://api.microsofttranslator.com/V2/Ajax.svc/Speak?oncomplete=save_speak_url&appId=Bearer "+encodeURIComponent(m$_translator_token)+"&text="+$('#trans').html()+"&language=it");
+	        }
+        }        
+    </script>
 	<script type="text/javascript">
 		var dict;	
 		var strings;
@@ -83,12 +140,21 @@
 		$(function () {
 			go_lesson();
 
+			// update token every 9 minutes
+			setInterval(function () {
+					$.getScript('http://polyglot-italian.appspot.com/');
+				},
+				9*60*1000);
+
+			// speak button
+			$('#speak').click(speak);			
+
 			// switch lessons
 			$('#lessons li').click(function () {
 				lesson_numb = parseInt($(this).html(),10);
 				$('#lessons li').removeClass('active');
 				$(this).addClass('active');
-				$('.help_table').remove();
+				$('.help_table').remove();				
 				go_lesson();
 			})
 
@@ -98,18 +164,25 @@
 					.attr('id','lightbox')
 					.appendTo('body')
 					.fadeIn(300);
+				$('#reformal_tab').fadeOut(300);
 			});
 
 			// remove dim
-			$('#lightbox').live('click', function () {$(this).fadeOut(300);});
+			$('#lightbox').live('click', function () {$(this).fadeOut(300);$('#reformal_tab').fadeIn(300);});
 
 			$('button').click(function () {
 				if ($(this).html() === 'Еще') {
-					$('#trans').html(' ');			
+					$('#trans').hide();
+					$('#trans').html(strings[1]);
+					$('#speak').hide();			
 					$('#orig').html(strings[0]);				
 					$(this).html('Ответ');
-				} else {
-					$('#trans').html(strings[1]);				
+					load_speak_wav();
+				} else {				
+					$('#trans').show();
+					if (speak_url) {
+		        		$('#speak').show();
+		        	}
 					$(this).html('Еще')
 					strings = get_strings(dict,Templates[lesson_numb]);
 				}
@@ -131,6 +204,8 @@
 			$('#help .click').click();		
 		});
 	</script>
+	<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ef72199387aad07"></script>
 	<script type="text/javascript">
     var reformalOptions = {
         project_id: 62321,
@@ -174,5 +249,7 @@
 <noscript><div><img src="//mc.yandex.ru/watch/14554246" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <a href="mailto:Suschev.Artem@gmail.com?subject=Тренер 'Полиглот'">написать автору</a>
+<br/>
+“Speaker” symbol by <a href="http://thenounproject.com/noun/speaker/#classification">The Noun Project</a>
 </body>
 </html>

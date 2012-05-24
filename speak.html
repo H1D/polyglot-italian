@@ -3,21 +3,27 @@
     <title></title>             
     <script type="text/javascript"
              src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.sound_.js"></script>
     <script type="text/javascript">
-        var language = "en";
-        var format = "audio/mp3";
-        var option = "MinSize"
-        var text = "Use pixels to express.";
-        function speak() {            
-
-            jQuery.get("http://api.microsofttranslator.com//V2//http.svc//Speak?appId=TTatEtN_72M1xmXzxs03PSSsyd3hg38q3tCrSUnMElJYlYworIi8uj76DyQcoaT9c&text="+$('textarea').val()+"&language=it")
+        var i = 0;
+        function speak(data) {            
+            $('#embed_player'+i).remove();
+            i = i+1;
+            $.fn.soundPlay({
+                    url: data,
+                    playerId: 'embed_player'+i,
+                    command: 'play'});         
         }
+
+        function load_wav (){
+            jQuery.getScript("http://api.microsofttranslator.com/V2/Ajax.svc/Speak?oncomplete=speak&appId=Bearer "+encodeURIComponent("http%3a%2f%2fschemas.xmlsoap.org%2fws%2f2005%2f05%2fidentity%2fclaims%2fnameidentifier=Ololo&http%3a%2f%2fschemas.microsoft.com%2faccesscontrolservice%2f2010%2f07%2fclaims%2fidentityprovider=https%3a%2f%2fdatamarket.accesscontrol.windows.net%2f&Audience=http%3a%2f%2fapi.microsofttranslator.com&ExpiresOn=1337774246&Issuer=https%3a%2f%2fdatamarket.accesscontrol.windows.net%2f&HMACSHA256=%2fEmI850CAHOOU1k7Te3B4B7em1cyDhSw6RF3lbdPfDs%3d")+"&text="+$('textarea').val()+"&language=it");
+        }        
     </script>
 </head>
 <body>
     <div>
-        <button onclick="speak();return false;">test</button>
-        <textarea></textarea>
+        <button onclick="load_wav();return false;">test</button>
+        <textarea>Chi?!</textarea>
         <br />        
     </div>
 </body>

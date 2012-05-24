@@ -1,0 +1,15 @@
+// utils
+var verb_root = [
+	['parl','говорил'],
+	['mang','ел'],
+	['guard','смотрел'],
+	['gioc','играл'],
+	['lavor','работал'],
+	['am','любил'],
+	['ascolt','слушал'],
+	['impar','учил'],
+	['abit','жил']
+];
+
+var v = [['lasci','позволил'],['chiam','звал'],['cant','пел'],['scus','извинил']];
+for(var i in v) gen_past(v[i][0],v[i][1])

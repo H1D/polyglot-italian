@@ -16,12 +16,12 @@ Templates[2] = [
 		[6,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>'],
 
 		[1,'<question_neutral[?]> <be[x]> <pronoun[x]>?'],
-		[1,'<question_direct[1]> <be[x=[2,3,4]]> <pronoun[x]>?'],
+		[1,'<question_direct[1]> <be[x=[:2,4:]]> <pronoun[x]>?'],
 		[1,'<question_direct[1]> <pronoun[x=[!2,!3,!4]]> <be[x]>?'],
 
 		// male
-		[4,'<pronoun[x=[!3,!5,!6,!7]]> <be[x]> <occupation[!1,!4]>?'],
-		[4,'<pronoun[x=[!3,!5,!6,!7]]> <be[x]> <occupation[!1,!4]>'],
+		[4,'<pronoun[x=[:3,7:]]> <be[x]> <occupation[!1,!4]>?'],
+		[4,'<pronoun[x=[:3,7:]]> <be[x]> <occupation[!1,!4]>'],
 
 		// female
 		[1,'<pronoun[x=[3]]> <be[x]> <occupation[!1,!3]>?'],

@@ -1,26 +1,26 @@
 Dicts[3] = Dict_3;
 Templates[3] = [
-		// [1,'<pronoun[x]> (<not>) <verb[?][x]>'],
-		// [1,'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>'],
+		[1,'<pronoun[x]> (<not>) <verb[?][x]>'],
+		[1,'<pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>'],
 		
-		// // // questions in present 
-		// [1,'<question_neutral[?]> <verb[?][2]>?'],
-		// [1,'<question_direct[?]> <pronoun[x]> <verb[?][x]>?'],
+		// // questions in present 
+		[1,'<question_neutral[?]> <verb[?][2]>?'],
+		[1,'<question_direct[?]> <pronoun[x]> <verb[?][x]>?'],
 
-		// // questions in past
-		// [1,'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?'],
-		// [1,'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?'],
+		// questions in past
+		[1,'<question_neutral[?]> (<not>) <help_verb[2]> <verb_past[?][2]>?'],
+		[1,'<question_direct[?]> <pronoun[x]> (<not>) <help_verb[x]> <verb_past[?][x]>?'],
 
-		// // lesson2
-		// [1,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?'],
-		// [1,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>'],
+		// lesson2
+		[1,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>?'],
+		[1,'<pronoun[x]> (<not>) <verb[y][x]>, <conjunction[?]> (<pronoun[x]>) (<not>) <verb[!y][x]>'],
 
-		// [1,'<question_neutral[?]> <be[x]> <pronoun[x]>?'],
-		// [1,'<question_direct[1]> <be[x=[!2:4]]> <pronoun[x]>?'],
-		// [1,'<question_direct[1]> <pronoun[x=[2:4]]> <be[x]>?'],
+		[1,'<question_neutral[?]> <be[x]> <pronoun[x]>?'],
+		[1,'<question_direct[1]> <be[x=[!2:4]]> <pronoun[x]>?'],
+		[1,'<question_direct[1]> <pronoun[x=[2:4]]> <be[x]>?'],
 	
 		// new
-		[6,'<pronoun[x]> (<not>) <wonna[x]> <verb[?][x]>'],
+		[6,'<pronoun[x]> (<not>) <wonna[x]> <verb_inf>'],
 		[6,'<question_direct> <wonna[x]> <verb_inf>?'],
 		[6,'<pronoun[x]> <not> <wonna[x]> <avere un probleme>'],
 

@@ -17,13 +17,7 @@
 
 	<div id="page">	
 		<!-- AddThis Button BEGIN -->
-			<div class="addthis_toolbox addthis_default_style addthis">
-				<a class="addthis_button_vk"></a>
-				<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-				<a class="addthis_button_tweet"></a>
-				<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-				<a class="addthis_counter addthis_pill_style"></a>
-			</div>	
+			<div class="yashare-auto-init addthis" data-yashareL10n="ru" data-yashareType="button" data-yashareQuickServices="vkontakte,facebook,yaru,twitter,odnoklassniki,moimir,lj,friendfeed,moikrug,gplus"></div> 	
 		<!-- AddThis Button END -->	
 
 		<ul id="lessons">
@@ -55,15 +49,24 @@
 		
 	</div>
 
-	<script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>
-    <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+	<script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>    
     <script type="text/javascript" src="js/italian.js"></script>
     <script type="text/javascript" src="js/dicts/lesson1.js"></script>
     <script type="text/javascript" src="js/dicts/lesson2.js"></script>    
 
     <script type="text/javascript">var m$_translator_token = null;</script>
-    <script type="text/javascript" src="http://polyglot-italian.appspot.com/"></script>
-    <script type="text/javascript" src="js/lib/jquery.sound_.js"></script>
+    <script type="text/javascript">
+    	jQuery(function ($) {
+    		$.getScript('http://polyglot-italian.appspot.com/');
+    		$.getScript('http://yandex.st/share/share.js');
+    		
+    		// update token every 9 minutes
+			setInterval(function () {
+					$.getScript('http://polyglot-italian.appspot.com/');
+				},
+				9*60*1000);
+    	});
+    </script>    
     <script type="text/javascript">
         var i = 0;
         var speak_url = null;
@@ -140,12 +143,6 @@
 		$(function () {
 			go_lesson();
 
-			// update token every 9 minutes
-			setInterval(function () {
-					$.getScript('http://polyglot-italian.appspot.com/');
-				},
-				9*60*1000);
-
 			// speak button
 			$('#speak').click(speak);			
 
@@ -204,8 +201,7 @@
 			$('#help .click').click();		
 		});
 	</script>
-	<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
-	<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ef72199387aad07"></script>
+	<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>	
 	<script type="text/javascript">
     var reformalOptions = {
         project_id: 62321,

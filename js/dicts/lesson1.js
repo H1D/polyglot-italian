@@ -33,7 +33,7 @@ function Dict_1() {
 			['lavorare','работать'],
 			['amare','любить'],
 			['ascoltare','слушать'],
-			['imparare','учить, узнавать'],
+			['imparare','изучать'],
 			['abitare','жить'],
 		],
 
@@ -182,14 +182,14 @@ function Dict_1() {
 			['ascoltano', 'слушают']
 		],
 		[
-			['imparo', 'учу'],
-			['impari', 'учишь'],
-			['impara', 'учит'],
-			['impara', 'учит'],
-			['impara', 'учите'],
-			['impariamo', 'учим'],
-			['imparate', 'учите'],
-			['imparano', 'учат']
+			['imparo', 'изучаю'],
+			['impari', 'изучаешь'],
+			['impara', 'изучает'],
+			['impara', 'изучает'],
+			['impara', 'изучаете'],
+			['impariamo', 'изучаем'],
+			['imparate', 'изучаете'],
+			['imparano', 'изучают']
 		],
 		[
 			['abito', 'живу'],
@@ -275,14 +275,14 @@ function Dict_1() {
 			['ascoltato', 'слушали'],
 		],
 		[
-			['imparato', 'учил'],
-			['imparato', 'учил'],
-			['imparato', 'учил'],
-			['imparato', 'училa'],
-			['imparato', 'учили'],
-			['imparato', 'учили'],
-			['imparato', 'учили'],
-			['imparato', 'учили'],
+			['imparato', 'изучал'],
+			['imparato', 'изучал'],
+			['imparato', 'изучал'],
+			['imparato', 'изучала'],
+			['imparato', 'изучали'],
+			['imparato', 'изучали'],
+			['imparato', 'изучали'],
+			['imparato', 'изучали'],
 		],
 		[
 			['abitato', 'жил'],

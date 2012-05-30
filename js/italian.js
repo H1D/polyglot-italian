@@ -208,7 +208,8 @@ function get_index(raw_token,vars,length) {
 			if(isNaN(bound))
 				throw 'Error parsing token:'+token;
 
-			return (function (x) { return function (index) {
+			return (function (x) { 
+				return function (index) {
 					if (index <= x) {
 						return false;
 					} else {
@@ -216,6 +217,26 @@ function get_index(raw_token,vars,length) {
 					}
 				}
 			})(bound);
+		}
+
+		// [123:456]
+		if (token.match(/^\d+:\d+$/)) {
+			var bound_1 = parseInt(token.match(/(\d+):(\d+)$/)[1],10);
+			var bound_2 = parseInt(token.match(/(\d+):(\d+)$/)[2],10);
+
+			//TODO throw exception
+			if(isNaN(bound_1) || isNaN(bound_2))
+				throw 'Error parsing token:'+token;
+
+			return (function (x,y) { 
+				return function (index) {
+					if (index >= x && index <= y) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			})(bound_1,bound_2);
 		}
 
 		// [123]

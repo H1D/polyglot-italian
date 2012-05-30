@@ -23,6 +23,7 @@
 		<ul id="lessons">
 			<li class="active">1</li>
 			<li>2</li>
+			<li>3</li>
 		</ul>
 		<div class="clear"></div>
 
@@ -52,7 +53,8 @@
 	<script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>    
     <script type="text/javascript" src="js/italian.js"></script>
     <script type="text/javascript" src="js/dicts/lesson1.js"></script>
-    <script type="text/javascript" src="js/dicts/lesson2.js"></script>    
+    <script type="text/javascript" src="js/dicts/lesson2.js"></script>
+    <script type="text/javascript" src="js/dicts/lesson3.js"></script>
 
     <script type="text/javascript">var m$_translator_token = null;</script>
     <script type="text/javascript">
@@ -174,13 +176,14 @@
 					$('#speak').hide();			
 					$('#orig').html(strings[0]);				
 					$(this).html('Ответ');
-					load_speak_wav();
-				} else {				
+					load_speak_wav();					
+				} else {
 					$('#trans').show();
 					if (speak_url) {
 		        		$('#speak').show();
 		        	}
-					$(this).html('Еще')
+					$(this).html('Еще');
+					$('#speak').click();
 					strings = get_strings(dict,Templates[lesson_numb]);
 				}
 			});

@@ -61,15 +61,14 @@ body {
 	position: relative;
 	top:8px;
 	cursor: default;
-	width:28px;
-	height:30px;
+	width:35px;
+	height:36px;
 	display: inline-block;
 	background-image:url('../img/speak.png');
 	background-repeat: no-repeat;	
 	background-position-x: 1px;
-	background-position-y: 1px;
-	border:1px gray solid;
-	border-radius:2px;
+	background-position-y: 1px;	
+	border-radius:21px;
 	box-shadow: 1px 1px 2px 0px gray;
 	background-position:center;
 }

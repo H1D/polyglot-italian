@@ -9,7 +9,7 @@
 
     </style>
 </head>
-<body>
+<body>		
 	<a href="https://github.com/H1D/polyglot-italian"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>	
 
 
@@ -29,7 +29,7 @@
 
 		<h3 class="gray">Сообразите, как по итальянски будет</h3>
 
-		<div id="process">
+		<div id="process">			
 			
 			<div id="orig"></div>
 			<div id="answer_row"><span id="trans"></span> <span id="speak"></span></div>
@@ -50,11 +50,15 @@
 		
 	</div>
 
+	<img id="flag" src="img/flag.png" style="position: relative;z-index:100002;"/>
+	<br/>
+
 	<script type="text/javascript" src="js/lib/jquery-1.6.3.min.js"></script>    
     <script type="text/javascript" src="js/italian.js"></script>
     <script type="text/javascript" src="js/dicts/lesson1.js"></script>
     <script type="text/javascript" src="js/dicts/lesson2.js"></script>
     <script type="text/javascript" src="js/dicts/lesson3.js"></script>
+    <script type="text/javascript" src="js/lib/jquery.sound_.js"></script>
 
     <script type="text/javascript">var m$_translator_token = null;</script>
     <script type="text/javascript">
@@ -163,11 +167,11 @@
 					.attr('id','lightbox')
 					.appendTo('body')
 					.fadeIn(300);
-				$('#reformal_tab').fadeOut(300);
+				$('#reformal_tab,#flag').fadeOut(300);
 			});
 
 			// remove dim
-			$('#lightbox').live('click', function () {$(this).fadeOut(300);$('#reformal_tab').fadeIn(300);});
+			$('#lightbox').live('click', function () {$(this).fadeOut(300);$('#reformal_tab,#flag').fadeIn(300);});
 
 			$('button').click(function () {
 				if ($(this).html() === 'Еще') {
